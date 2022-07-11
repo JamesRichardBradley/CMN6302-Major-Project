@@ -32,10 +32,10 @@ MonoBehaviour:
     m_Value: 0.6
   intensity:
     m_OverrideState: 1
-    m_Value: 30
+    m_Value: 40
   scatter:
     m_OverrideState: 1
-    m_Value: 0.255
+    m_Value: 0.3
   clamp:
     m_OverrideState: 0
     m_Value: 65472
