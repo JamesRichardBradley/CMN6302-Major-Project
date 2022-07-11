@@ -33,6 +33,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 3c413bf8f62b84347b5173bc21a2ca96, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_4a82156f5d1842cb9ac689e2e8a95540_Out_0:
+        m_Texture: {fileID: 2800000, guid: 3c413bf8f62b84347b5173bc21a2ca96, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_dcc66a0337614d8fae353b9a980d373f_Out_0:
+        m_Texture: {fileID: 2800000, guid: 3c413bf8f62b84347b5173bc21a2ca96, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -47,9 +59,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FresnelPower: 0
+    - _DistortionAmount: 1
+    - _FresnelPower: 1
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _RotationSpeed: -10
+    - _TwirlStrength: 5
     m_Colors:
-    - _FresnelColour: {r: 0, g: 0, b: 0, a: 0}
+    - _FresnelColour: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
   m_BuildTextureStacks: []
