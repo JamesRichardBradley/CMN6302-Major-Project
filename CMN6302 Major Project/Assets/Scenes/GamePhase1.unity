@@ -347,8 +347,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 584d85269319b2c428d4c938ae0b3a51, type: 2}
   - {fileID: 2100000, guid: 26347a18308aca54cbd4ac57d132ad27, type: 2}
   - {fileID: 2100000, guid: d26c47fb723b0564197fad961578311d, type: 2}
+  systemCenterMaterial: {fileID: 0}
   systemCenter:
   - {fileID: 7960443509256798007, guid: 292c655a2d730ad42984439e572eabbb, type: 3}
   - {fileID: 5361632160117264212, guid: a490a29ee3acf694eb41a5e7950f8521, type: 3}
+  - {fileID: 7960443509256798007, guid: 292c655a2d730ad42984439e572eabbb, type: 3}
   - {fileID: 8199258409774308954, guid: a2a4be8625c7b5146b485fc13e19e328, type: 3}
   - {fileID: 7960443509256798007, guid: 292c655a2d730ad42984439e572eabbb, type: 3}
+  centerSelection: 0
