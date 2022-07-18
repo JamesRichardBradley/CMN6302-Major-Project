@@ -79,7 +79,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _BaseColour: 0.80151236
+    - _BaseColour: 0.69006205
     - _Blend: 0
     - _BumpScale: 1
     - _CellDensity: 60
