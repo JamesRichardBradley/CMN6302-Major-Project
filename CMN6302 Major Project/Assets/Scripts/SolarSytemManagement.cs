@@ -7,23 +7,24 @@ public class SolarSytemManagement : MonoBehaviour
     public Material[] skyboxMaterials;
     public GameObject[] systemCenterList;
     private GameObject systemCenter;
-    public LineRenderer circleRenderer;
     private int centerSelection, totalPlanets;
-    private float distance = 30.0f, randomDistance;
+    private float distance = 30.0f, randomDistance, scaleFactor;
+    private Vector3 scale;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        Randomization();        
+        Randomization();    
         SkyboxSetup();
         SystemCenterSetup();
+        PlanetGeneration();
     }
 
     void Randomization()
     {
         centerSelection = Random.Range(0, systemCenterList.Length);
-        totalPlanets = Random.Range(0, 6);
+        totalPlanets = Random.Range(1, 6);
     }
 
     void SkyboxSetup()
@@ -37,39 +38,29 @@ public class SolarSytemManagement : MonoBehaviour
         //Selects what will be generated for the gravitational point of the system (Star, Binary System, or Black Hole)
         systemCenter = systemCenterList[centerSelection];
         Instantiate(systemCenter, new Vector3(0, 0, 0), Quaternion.identity);
-        DrawCircle(60, distance);
     }
 
     void PlanetGeneration()
     {
+        // For Loop to iterate through the designated number of planets
         for (int currentPlanet = 0; currentPlanet <= totalPlanets; currentPlanet++)
         {
+            // Sets the scaling, and applies it to a Vector3, each planet will be a different size
+            scaleFactor = Random.Range(1.0f, 5.0f);
+            scale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+
+            // Creates a sphere (temporary), then sets its size, position (relative to the center and other generated planets), and its position in orbit around the center.
             GameObject planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            planet.transform.localScale += scale;
             planet.transform.position = new Vector3(0,0,distance);
-            planet.transform.
-        }
-    }
+            planet.transform.RotateAround(systemCenter.transform.position, Vector3.up, Random.Range(0, 359));
 
-    //Function to draw orbital lines
-    void DrawCircle(int steps, float radius)
-    {
-        circleRenderer.positionCount = steps + 1;
+            // Adds the "DrawOrbit" script to the planet
+            planet.AddComponent<DrawOrbit>();
 
-        for (int currentStep = 0; currentStep <= steps; currentStep++)
-        {
-            float progress = ((float)currentStep / steps);
-
-            float radian = progress * 2 * Mathf.PI;
-
-            float xScaled = Mathf.Cos(radian);
-            float zScaled = Mathf.Sin(radian);
-
-            float x = xScaled * radius;
-            float z = zScaled * radius;
-
-            Vector3 position = new Vector3(x, 0, z);
-
-            circleRenderer.SetPosition(currentStep, position);
+            // Regenerates the distance so that planets aren't generated too close to eachother
+            randomDistance = Random.Range(30, 45);
+            distance += randomDistance;
         }
     }
 }

@@ -190,7 +190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &928618630
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -347,7 +347,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 29, z: -50.3}
+  m_LocalPosition: {x: 0, y: 29, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -449,7 +449,6 @@ MonoBehaviour:
   - {fileID: 8199258409774308954, guid: a2a4be8625c7b5146b485fc13e19e328, type: 3}
   - {fileID: 5361632160117264212, guid: a490a29ee3acf694eb41a5e7950f8521, type: 3}
   - {fileID: 7960443509256798007, guid: 292c655a2d730ad42984439e572eabbb, type: 3}
-  circleRenderer: {fileID: 1356767740}
 --- !u!120 &1356767740
 LineRenderer:
   m_ObjectHideFlags: 0
