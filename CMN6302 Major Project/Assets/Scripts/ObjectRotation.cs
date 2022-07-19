@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class ObjectRotation : MonoBehaviour
 {
-    public GameObject target;
+    public GameObject thisObject, rotationTarget;
     public float rotationSpeed;
+    public bool rotateAround = false;
 
     // Update is called once per frame
     void Update()
     {
-        // Spin the object around the target at 20 degrees/second.
-        target.transform.Rotate(0.0f, rotationSpeed, 0.0f);
+        if (!rotateAround)
+        {
+            // Spin the object at chosen speed.
+            thisObject.transform.Rotate(0.0f, rotationSpeed * Time.deltaTime, 0.0f);
+        }
+        else
+        {
+            // Spin the object around the target at chosen speed.
+            thisObject.transform.RotateAround(rotationTarget.transform.position, Vector3.up, rotationSpeed * Time.deltaTime);
+        }
+
     }
 }

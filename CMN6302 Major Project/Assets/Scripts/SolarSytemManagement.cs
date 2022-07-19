@@ -5,22 +5,25 @@ using UnityEngine;
 public class SolarSytemManagement : MonoBehaviour
 {
     public Material[] skyboxMaterials;
-    public Material systemCenterMaterial;
-
-    public GameObject[] systemCenter;
-    public GameObject gravitationalPoint;
-
-    public int centerSelection;
-
-    public float radius;
-    public float lineWidth;
+    public GameObject[] systemCenterList;
+    private GameObject systemCenter;
+    public LineRenderer circleRenderer;
+    private int centerSelection, totalPlanets;
+    private float distance = 30.0f, randomDistance;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        Randomization();        
         SkyboxSetup();
         SystemCenterSetup();
+    }
+
+    void Randomization()
+    {
+        centerSelection = Random.Range(0, systemCenterList.Length);
+        totalPlanets = Random.Range(0, 6);
     }
 
     void SkyboxSetup()
@@ -32,31 +35,41 @@ public class SolarSytemManagement : MonoBehaviour
     void SystemCenterSetup()
     {
         //Selects what will be generated for the gravitational point of the system (Star, Binary System, or Black Hole)
-        centerSelection = Random.Range(0, systemCenter.Length);
-        Instantiate(systemCenter[centerSelection], new Vector3(0, 0, 0), Quaternion.identity);
+        systemCenter = systemCenterList[centerSelection];
+        Instantiate(systemCenter, new Vector3(0, 0, 0), Quaternion.identity);
+        DrawCircle(60, distance);
     }
 
-    void DrawCircle()
+    void PlanetGeneration()
     {
-        var segments = 360;
-        var line = gravitationalPoint.AddComponent<LineRenderer>();
-        line.useWorldSpace = false;
-        line.startWidth = lineWidth;
-        line.endWidth = lineWidth;
-        line.positionCount = segments + 1;
-
-        var pointCount = segments + 1; // add extra point to make startpoint and endpoint the same to close the circle
-        var points = new Vector3[pointCount];
-
-        for (int i = 0; i < pointCount; i++)
+        for (int currentPlanet = 0; currentPlanet <= totalPlanets; currentPlanet++)
         {
-            var rad = Mathf.Deg2Rad * (i * 360f / segments);
-            points[i] = new Vector3(Mathf.Sin(rad) * radius, 0, Mathf.Cos(rad) * radius);
+            GameObject planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            planet.transform.position = new Vector3(0,0,distance);
+            planet.transform.
         }
-
-        line.SetPositions(points);
     }
 
+    //Function to draw orbital lines
+    void DrawCircle(int steps, float radius)
+    {
+        circleRenderer.positionCount = steps + 1;
+
+        for (int currentStep = 0; currentStep <= steps; currentStep++)
+        {
+            float progress = ((float)currentStep / steps);
+
+            float radian = progress * 2 * Mathf.PI;
+
+            float xScaled = Mathf.Cos(radian);
+            float zScaled = Mathf.Sin(radian);
+
+            float x = xScaled * radius;
+            float z = zScaled * radius;
+
+            Vector3 position = new Vector3(x, 0, z);
+
+            circleRenderer.SetPosition(currentStep, position);
+        }
+    }
 }
-
-
