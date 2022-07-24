@@ -5,9 +5,9 @@ using UnityEngine;
 public class DrawOrbit : MonoBehaviour
 {
     private LineRenderer circleRenderer;
-    public Material material;
+    public Material material, circleRendererMaterial;
     private Vector3 planet, systemCenter = Vector3.zero;
-    private float distance;
+    private float distance, width = 0.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,11 @@ public class DrawOrbit : MonoBehaviour
     void Initialisation()
     {
         // Adds a line renderer to the planet (For creating orbital paths), obtains the location of the planet, and calculates the distance between it and the center point.
-        this.gameObject.AddComponent<LineRenderer>();
+        circleRenderer = this.gameObject.AddComponent<LineRenderer>();
+        circleRenderer.startWidth = width;
+        circleRenderer.endWidth = width;
+        circleRendererMaterial = GetComponent<LineRenderer>().material;
+        circleRendererMaterial = material;
         planet = this.gameObject.transform.position;
         distance = Vector3.Distance(planet, systemCenter);
     }
@@ -27,8 +31,6 @@ public class DrawOrbit : MonoBehaviour
     // Function to draw orbital lines
     void TraceOrbit(int steps, float radius)
     {
-        circleRenderer = GetComponent<LineRenderer>();
-        circleRenderer.material = material;
         circleRenderer.positionCount = steps + 1;
 
         for (int currentStep = 0; currentStep <= steps; currentStep++)

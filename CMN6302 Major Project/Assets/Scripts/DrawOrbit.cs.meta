@@ -4,7 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - material: {fileID: 2100000, guid: 12e0b5e02a8b651408dd23f1e31e0ee2, type: 2}
+  - material: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - circleRendererMaterial: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
