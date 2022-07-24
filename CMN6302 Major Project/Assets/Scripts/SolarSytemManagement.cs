@@ -5,10 +5,10 @@ using UnityEngine;
 public class SolarSytemManagement : MonoBehaviour
 {
     public Material[] skyboxMaterials;
-    public GameObject[] systemCenterList;
-    private GameObject systemCenter;
+    public GameObject[] systemCenterList, planetList;
+    private GameObject systemCenter, planet;
     private int centerSelection, totalPlanets;
-    private float distance = 30.0f, randomDistance, scaleFactor;
+    private float distance = 50.0f, randomDistance, scaleFactor;
     private Vector3 scale;
 
 
@@ -46,12 +46,12 @@ public class SolarSytemManagement : MonoBehaviour
         for (int currentPlanet = 0; currentPlanet <= totalPlanets; currentPlanet++)
         {
             // Sets the scaling, and applies it to a Vector3, each planet will be a different size
-            scaleFactor = Random.Range(1.0f, 5.0f);
+            scaleFactor = Random.Range(0.0f, 3.0f);
             scale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
 
             // Creates a sphere (temporary), then sets its size, position (relative to the center and other generated planets), and its position in orbit around the center.
-            GameObject planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            planet.transform.localScale += scale;
+            planet = Instantiate(planetList[Random.Range(0, planetList.Length)]);
+            //planet.transform.localScale = scale;
             planet.transform.position = new Vector3(0,0,distance);
             planet.transform.RotateAround(systemCenter.transform.position, Vector3.up, Random.Range(0, 359));
 
@@ -59,7 +59,7 @@ public class SolarSytemManagement : MonoBehaviour
             planet.AddComponent<DrawOrbit>();
 
             // Regenerates the distance so that planets aren't generated too close to eachother
-            randomDistance = Random.Range(30, 45);
+            randomDistance = Random.Range(15, 30);
             distance += randomDistance;
         }
     }

@@ -5,9 +5,9 @@ using UnityEngine;
 public class DrawOrbit : MonoBehaviour
 {
     private LineRenderer circleRenderer;
-    public Material material, circleRendererMaterial;
+    public Material material;
     private Vector3 planet, systemCenter = Vector3.zero;
-    private float distance, width = 0.2f;
+    private float distance, width = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +22,6 @@ public class DrawOrbit : MonoBehaviour
         circleRenderer = this.gameObject.AddComponent<LineRenderer>();
         circleRenderer.startWidth = width;
         circleRenderer.endWidth = width;
-        circleRendererMaterial = GetComponent<LineRenderer>().material;
-        circleRendererMaterial = material;
         planet = this.gameObject.transform.position;
         distance = Vector3.Distance(planet, systemCenter);
     }
