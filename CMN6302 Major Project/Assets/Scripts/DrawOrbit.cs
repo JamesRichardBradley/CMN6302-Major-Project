@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DrawOrbit : MonoBehaviour
@@ -13,12 +11,12 @@ public class DrawOrbit : MonoBehaviour
     void Start()
     {
         Initialisation();
-        TraceOrbit(60, distance);
+        TraceOrbit(120, distance);
     }
 
+    // Adds a line renderer to the planet (For creating orbital paths), obtains the location of the planet, and calculates the distance between it and the center point.
     void Initialisation()
     {
-        // Adds a line renderer to the planet (For creating orbital paths), obtains the location of the planet, and calculates the distance between it and the center point.
         circleRenderer = this.gameObject.AddComponent<LineRenderer>();
         circleRenderer.startWidth = width;
         circleRenderer.endWidth = width;
@@ -26,7 +24,7 @@ public class DrawOrbit : MonoBehaviour
         distance = Vector3.Distance(planet, systemCenter);
     }
 
-    // Function to draw orbital lines
+    // Function to draw orbital lines, by creating multiple "steps" in the line as a point of rotation (eventually meeting up to create a full circle)
     void TraceOrbit(int steps, float radius)
     {
         circleRenderer.positionCount = steps + 1;
@@ -34,20 +32,15 @@ public class DrawOrbit : MonoBehaviour
         for (int currentStep = 0; currentStep <= steps; currentStep++)
         {
             float progress = ((float)currentStep / steps);
-
             float radian = progress * 2 * Mathf.PI;
-
             float xScaled = Mathf.Cos(radian);
             float zScaled = Mathf.Sin(radian);
-
             float x = xScaled * radius;
             float z = zScaled * radius;
 
             Vector3 position = new Vector3(x, 0, z);
-
             circleRenderer.SetPosition(currentStep, position);
         }
-
         circleRenderer.material = material;
     }
 }

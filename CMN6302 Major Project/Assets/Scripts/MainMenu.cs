@@ -1,19 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public Animator animator;
+    public GameObject fade;
+    private int selection;
 
+    // Begins a new game
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        FadeOutTo(1);
     }
 
+    // Closes the application
     public void QuitGame()
     {
-        Application.Quit();
+        FadeOutTo(2);
     }
 
+    // Activates trigger for Fade Out animation, then updates the Level Selection Number
+    void FadeOutTo(int levelNo)
+    {
+        animator.SetTrigger("FadeOut");
+        Debug.Log("FadeOut Triggered");
+        selection = levelNo;
+    }
+
+    // Called once the Fade Out animation has completed, to then either begin the game, or close the application
+    void OnFadeoutComplete()
+    {
+        if (selection == 1)
+        {
+                Debug.Log("New Game Starting");
+                SceneManager.LoadScene(1);
+        }
+        else if (selection == 2)
+        {
+                Debug.Log("Application Closing");
+                Application.Quit();
+        }
+    }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SolarSytemManagement : MonoBehaviour
@@ -21,21 +19,22 @@ public class SolarSytemManagement : MonoBehaviour
         PlanetGeneration();
     }
 
+    // Selects which "Center of Gravity" point, and how many planets will make up the system
     void Randomization()
     {
         centerSelection = Random.Range(0, systemCenterList.Length);
         totalPlanets = Random.Range(1, 6);
     }
 
+    // Selects which skybox will be used for this game
     void SkyboxSetup()
     {
-        //Selects the skybox to be used for this iteration of the game
         RenderSettings.skybox = skyboxMaterials[Random.Range(0, skyboxMaterials.Length)];
     }
 
+    //Selects what will be generated for the gravitational point of the system (Star, Binary System, or Black Hole)
     void SystemCenterSetup()
     {
-        //Selects what will be generated for the gravitational point of the system (Star, Binary System, or Black Hole)
         systemCenter = systemCenterList[centerSelection];
         Instantiate(systemCenter, new Vector3(0, 0, 0), Quaternion.identity);
     }
