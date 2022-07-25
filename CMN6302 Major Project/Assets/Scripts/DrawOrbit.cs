@@ -5,7 +5,7 @@ using UnityEngine;
 public class DrawOrbit : MonoBehaviour
 {
     private LineRenderer circleRenderer;
-    public Material material;
+    private Material material;
     private Vector3 planet, systemCenter = Vector3.zero;
     private float distance, width = 0.3f;
 
@@ -47,5 +47,7 @@ public class DrawOrbit : MonoBehaviour
 
             circleRenderer.SetPosition(currentStep, position);
         }
+
+        circleRenderer.material = material;
     }
 }

@@ -79,11 +79,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _BaseColour: 0.2088728
+    - _BaseColour: 0.4
     - _Blend: 0
     - _BumpScale: 1
-    - _CellDensity: 60
-    - _CellSpeed: 5
+    - _CellDensity: 120
+    - _CellSpeed: 10
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -92,7 +92,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _Flares: 20
+    - _Flares: 10
     - _FresnelPower: 1
     - _GlossMapScale: 0
     - _Glossiness: 0

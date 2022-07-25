@@ -17,7 +17,12 @@ public class ShipController : MonoBehaviour
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
 
         cc.Move(movement * Time.deltaTime * speed);
-        cc.transform.LookAt(transform.position + movement);
+
+
+        Vector3 desiredPosition = transform.position + movement;
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, speed);
+
+        cc.transform.LookAt(smoothedPosition);
     }
 }
  

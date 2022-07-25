@@ -51,7 +51,6 @@ public class SolarSytemManagement : MonoBehaviour
 
             // Creates a sphere (temporary), then sets its size, position (relative to the center and other generated planets), and its position in orbit around the center.
             planet = Instantiate(planetList[Random.Range(0, planetList.Length)]);
-            //planet.transform.localScale = scale;
             planet.transform.position = new Vector3(0,0,distance);
             planet.transform.RotateAround(systemCenter.transform.position, Vector3.up, Random.Range(0, 359));
 
