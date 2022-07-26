@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 8890893768434695073}
   m_Layer: 0
   m_Name: Star
-  m_TagString: Untagged
+  m_TagString: Gravitational Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

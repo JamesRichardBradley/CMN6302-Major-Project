@@ -508,9 +508,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7449861950774884838}
   - component: {fileID: 3629375949150672392}
+  - component: {fileID: 2466108070979720777}
   m_Layer: 0
   m_Name: Planet-06
-  m_TagString: Untagged
+  m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -546,7 +547,20 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2
-  m_Height: 10
+  m_Radius: 5
+  m_Height: 20
   m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &2466108070979720777
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793735709584712540}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
