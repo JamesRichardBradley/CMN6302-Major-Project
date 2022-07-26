@@ -10,13 +10,13 @@ public class MainMenu : MonoBehaviour
     // Begins a new game
     public void PlayGame()
     {
-        FadeOutTo(1);
+        FadeOutTo(2);
     }
 
     // Closes the application
     public void QuitGame()
     {
-        FadeOutTo(2);
+        FadeOutTo(3);
     }
 
     // Activates trigger for Fade Out animation, then updates the Level Selection Number
@@ -30,12 +30,12 @@ public class MainMenu : MonoBehaviour
     // Called once the Fade Out animation has completed, to then either begin the game, or close the application
     void OnFadeoutComplete()
     {
-        if (selection == 1)
+        if (selection == 2)
         {
                 Debug.Log("New Game Starting");
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(2);
         }
-        else if (selection == 2)
+        else if (selection == 3)
         {
                 Debug.Log("Application Closing");
                 Application.Quit();

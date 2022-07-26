@@ -5,8 +5,9 @@ public class SolarSytemManagement : MonoBehaviour
     public Material[] skyboxMaterials, planetMaterials;
     public GameObject[] systemCenterList, planetList;
     private GameObject systemCenter, planet;
-    private int centerSelection, totalPlanets, skyboxSelection;
-    private float distance = 50.0f, randomDistance, scaleFactor;
+    private MeshRenderer[] planetMeshes;
+    private int centerSelection, totalPlanets, skyboxSelection, materialSelection;
+    private float distance = 50.0f, randomDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -49,13 +50,19 @@ public class SolarSytemManagement : MonoBehaviour
         // For Loop to iterate through the designated number of planets
         for (int currentPlanet = 0; currentPlanet <= totalPlanets; currentPlanet++)
         {
+            materialSelection = Random.Range(0, planetMaterials.Length);
 
             // Creates a sphere (temporary), then sets its size, position (relative to the center and other generated planets), and its position in orbit around the center.
             planet = Instantiate(planetList[Random.Range(0, planetList.Length)]);
             planet.transform.position = new Vector3(0,0,distance);
             planet.transform.RotateAround(systemCenter.transform.position, Vector3.up, Random.Range(0, 359));
 
-
+            // Finds all of the Mesh Renderers within the instantiated mesh, then applies a randomly chosen material to all meshes for this planet.
+            planetMeshes = planet.GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer renderer in planetMeshes)
+            {
+                renderer.material = planetMaterials[materialSelection];
+            }
 
             // Adds the "DrawOrbit" script to the planet
             planet.AddComponent<DrawOrbit>();
@@ -64,7 +71,7 @@ public class SolarSytemManagement : MonoBehaviour
             randomDistance = Random.Range(30, 50);
             distance += randomDistance;
 
-            Debug.Log("Planet " + (currentPlanet + 1) + "Generated");
+            Debug.Log("Planet " + (currentPlanet + 1) + " Generated");
         }
     }
 }

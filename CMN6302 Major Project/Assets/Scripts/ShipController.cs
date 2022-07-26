@@ -21,21 +21,5 @@ public class ShipController : MonoBehaviour
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, speed);
         cc.transform.LookAt(smoothedPosition);
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Planet"))
-    //    {
-    //        Debug.Log("In Planetary Range");
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("Planet"))
-    //    {
-    //        Debug.Log("Left Planetary Range");
-    //    }
-    //}
 }
  

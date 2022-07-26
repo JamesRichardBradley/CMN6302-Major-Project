@@ -204,6 +204,7 @@ Transform:
   - {fileID: 7665179016169068471}
   - {fileID: 2827474975244618568}
   - {fileID: 272951465082260172}
+  - {fileID: 2757443994878498657}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -247,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scanCircle: {fileID: 272951465082260173}
+  planetCamera: {fileID: 9043249516806018304}
 --- !u!1 &6325997592126624083
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,4 +663,75 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1487093117104672232, guid: 8b3314e9af9b6834a89b4fc8aeb9e6bb, type: 3}
   m_PrefabInstance: {fileID: 1687302464846776101}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2555735880876413298
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2537817807148546978}
+    m_Modifications:
+    - target: {fileID: 374824106842883603, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 374824106842883603, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 374824106842883603, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 374824106842883603, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 374824106842883603, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 374824106842883603, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 374824106842883603, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 374824106842883603, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 374824106842883603, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 374824106842883603, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 374824106842883603, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437656126940029827, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+      propertyPath: rotationTarget
+      value: 
+      objectReference: {fileID: 2914941068096020760}
+    - target: {fileID: 6157527696312940409, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+      propertyPath: m_Name
+      value: Planet Camera
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+--- !u!4 &2757443994878498657 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 374824106842883603, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+  m_PrefabInstance: {fileID: 2555735880876413298}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &9043249516806018304 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6843184155734951026, guid: 83585d621b5951a45a21aa0c88bc92a6, type: 3}
+  m_PrefabInstance: {fileID: 2555735880876413298}
   m_PrefabAsset: {fileID: 0}
