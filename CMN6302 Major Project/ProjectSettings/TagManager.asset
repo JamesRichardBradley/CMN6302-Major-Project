@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Planet
   - Gravitational Point
+  - Planet Mesh
   layers:
   - Default
   - TransparentFX
