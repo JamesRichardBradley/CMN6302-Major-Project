@@ -3,39 +3,71 @@ using UnityEngine;
 public class PlanetScript : MonoBehaviour
 {
     public GameObject scanCircle;
-    private GameObject player;
-    private LineRenderer circleRenderer;
-    private Vector3 target;
+    public LineRenderer circleRenderer;
     public Camera planetCamera;
+    private GameObject player;
+    private Vector3 target;
+
+    UiManagment userInterface;
+    public bool isMissionPlanet, paused;
 
     private void Start()
     {
-        // Sets up camera's, player, and scan circle on start.
-        player = GameObject.FindGameObjectWithTag("Player");
+        GetGameObjects();
+        SetGameObjectsDefaults();
+    }
+
+    private void GetGameObjects()
+    {
+        player = GameObject.Find("Player");
+        userInterface = GameObject.Find("SolarSystemManagement").GetComponent<UiManagment>();
+    }
+
+    private void SetGameObjectsDefaults()
+    {
         planetCamera.enabled = false;
         scanCircle.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // Makes the scan circle appear when player enters trigger zone.
-        if (other.CompareTag("Player"))
-        {
-            scanCircle.SetActive(true);
-        }
-    }
-
     private void OnTriggerStay(Collider other)
     {
-        // While the player is within the trigger zone of the planet, pressing the "Submit" button allows them to enter "Planetary View"
-        if (Input.GetButton("Submit"))
+        if (!paused)
         {
-            Debug.Log("Button Pressed");
-            circleRenderer = this.gameObject.GetComponent<LineRenderer>();
-            planetCamera.enabled = true;
-            scanCircle.SetActive(false);
-            player.SetActive(false);
-            circleRenderer.enabled = false;
+            // Makes the scan circle appear when player enters trigger zone.
+            if (other.CompareTag("Player"))
+            {
+                scanCircle.SetActive(true);
+                userInterface.SetUIMode(1);
+
+                // Makes the scan circle always face the camera.
+                target = Camera.main.transform.position;
+                scanCircle.transform.LookAt(target);
+
+                Debug.Log("Player has entered Trigger");
+            }
+
+            // While the player is within the trigger zone of the planet, pressing the "Submit" button allows them to enter "Planetary View"
+            if (Input.GetButton("Submit"))
+            {
+                circleRenderer = this.gameObject.GetComponent<LineRenderer>();
+                circleRenderer.enabled = false;
+                planetCamera.enabled = true;
+                scanCircle.SetActive(false);
+                player.SetActive(false);
+                Debug.Log("Select Pressed");
+
+                // Selects which UI is displayed dependent on whether the planet contains the mission objective.
+                if (isMissionPlanet)
+                {
+                    userInterface.SetUIMode(2);
+                    Debug.Log("Mission Planet");
+                }
+                else
+                {
+                    userInterface.SetUIMode(3);
+                    Debug.Log("Not Mission Planet");
+                }
+            }
         }
     }
 
@@ -45,23 +77,25 @@ public class PlanetScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             scanCircle.SetActive(false);
+            userInterface.SetUIMode(0);
         }
     }
 
     private void Update()
     {
-        // Makes the scan circle always face the camera.
-        target = Camera.main.transform.position;
-        scanCircle.transform.LookAt(target);
+        paused = userInterface.paused;
 
-        // Allows player to exit Planetary View, and return to the system map
-        if (Input.GetButton("Cancel"))
+        if(!paused)
         {
-            Debug.Log("Button Pressed");
-            circleRenderer = this.gameObject.GetComponent<LineRenderer>();
-            planetCamera.enabled = false;
-            player.SetActive(true);
-            circleRenderer.enabled = true;
+            // Allows player to exit Planetary View, and return to the system map
+            if (Input.GetButton("Cancel"))
+            {
+                circleRenderer = this.gameObject.GetComponent<LineRenderer>();
+                planetCamera.enabled = false;
+                player.SetActive(true);
+                circleRenderer.enabled = true;
+                Debug.Log("Back Pressed");
+            }
         }
     }
 }

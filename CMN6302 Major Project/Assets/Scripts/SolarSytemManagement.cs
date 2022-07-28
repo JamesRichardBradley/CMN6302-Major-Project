@@ -3,7 +3,8 @@ using UnityEngine;
 public class SolarSytemManagement : MonoBehaviour
 {
     public Material[] skyboxMaterials, planetMaterials;
-    public GameObject[] systemCenterList, planetList;
+    public GameObject[] systemCenterList, planetList, instantiatedPlanets;
+    private PlanetScript missionPlanet;
     private GameObject systemCenter, planet;
     private MeshRenderer[] planetMeshes;
     private int centerSelection, totalPlanets, skyboxSelection, materialSelection;
@@ -11,20 +12,10 @@ public class SolarSytemManagement : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        Randomization();    
+    {  
         SkyboxSetup();
         SystemCenterSetup();
         PlanetGeneration();
-    }
-
-    // Selects which "Center of Gravity" point, and how many planets will make up the system
-    void Randomization()
-    {
-        centerSelection = Random.Range(0, systemCenterList.Length);
-        Debug.Log("Gravitational Point Selected: " + centerSelection);
-        totalPlanets = Random.Range(3, 8);
-        Debug.Log("Total Planets Selected: " + totalPlanets);
     }
 
     // Selects which skybox will be used for this game
@@ -38,14 +29,18 @@ public class SolarSytemManagement : MonoBehaviour
     //Selects what will be generated for the gravitational point of the system (Star, Binary System, or Black Hole)
     void SystemCenterSetup()
     {
+        centerSelection = Random.Range(0, systemCenterList.Length);
+        Debug.Log("Gravitational Point Selected: " + centerSelection);
         systemCenter = systemCenterList[centerSelection];
         Instantiate(systemCenter, new Vector3(0, 0, 0), Quaternion.identity);
-        Debug.Log("System Center Instantiated");
+        Debug.Log("System Center " + centerSelection + " Instantiated");
     }
 
     void PlanetGeneration()
     {
-        Debug.Log("NUmber of Planets to Generate: " + totalPlanets);
+        totalPlanets = Random.Range(3, 8);
+
+        Debug.Log("Number of Planets to Generate: " + totalPlanets);
 
         // For Loop to iterate through the designated number of planets
         for (int currentPlanet = 0; currentPlanet <= totalPlanets; currentPlanet++)
@@ -71,7 +66,15 @@ public class SolarSytemManagement : MonoBehaviour
             randomDistance = Random.Range(30, 50);
             distance += randomDistance;
 
+            planet.gameObject.tag = "Planet";
+
             Debug.Log("Planet " + (currentPlanet + 1) + " Generated");
         }
+
+        // Adds all the created planets to an array, and selects one randomly to contain the mission objective.
+        instantiatedPlanets = GameObject.FindGameObjectsWithTag("Planet");
+        Debug.Log("instantiatedPlanets = " + instantiatedPlanets.Length);
+        missionPlanet = instantiatedPlanets[Random.Range(0, totalPlanets)].GetComponent<PlanetScript>();
+        missionPlanet.isMissionPlanet = true;
     }
 }
