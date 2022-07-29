@@ -2671,6 +2671,10 @@ MonoBehaviour:
   - {fileID: 7793735709584712540, guid: 175e611fcd057fb4a86630be6da7af7f, type: 3}
   - {fileID: 2914941068096020760, guid: c09687922c7feba47b227b2a126b7b72, type: 3}
   instantiatedPlanets: []
+  systemCenter: {fileID: 0}
+  planet: {fileID: 0}
+  distance: 50
+  randomDistance: 0
 --- !u!114 &1356767740
 MonoBehaviour:
   m_ObjectHideFlags: 0

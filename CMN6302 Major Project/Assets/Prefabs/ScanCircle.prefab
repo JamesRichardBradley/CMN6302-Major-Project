@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1487093117499587203}
   - component: {fileID: 1487093117499587212}
-  - component: {fileID: 1487093117499587214}
+  - component: {fileID: 5644136215399958470}
   m_Layer: 0
   m_Name: ScanCircle
   m_TagString: Untagged
@@ -117,7 +117,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1487093117499587214
+--- !u!95 &5644136215399958470
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
