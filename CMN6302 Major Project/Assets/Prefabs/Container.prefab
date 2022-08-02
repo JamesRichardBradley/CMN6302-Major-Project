@@ -64,6 +64,8 @@ MonoBehaviour:
   scanCircle: {fileID: 1689782822889578625}
   circleRenderer: {fileID: 0}
   planetCamera: {fileID: 3698038937189270481}
+  player: {fileID: 0}
+  walkPlayer: {fileID: 0}
   isMissionPlanet: 0
   paused: 0
   gravity: -12

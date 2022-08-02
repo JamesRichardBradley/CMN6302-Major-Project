@@ -6,7 +6,7 @@ public class SolarSytemManagement : MonoBehaviour
     public GameObject[] systemCenterList, instantiatedPlanets;
     public PlanetScript missionPlanet;
     public GameObject systemCenter, planet, planetContainer, walkPlayer, surfacePlayer;
-    private int centerSelection, totalPlanets, skyboxSelection;
+    private int centerSelection, totalPlanets, skyboxSelection, chosenMissionPlanet;
     public float distance = 50.0f, randomDistance;
 
     // Start is called before the first frame update
@@ -40,6 +40,7 @@ public class SolarSytemManagement : MonoBehaviour
     void PlanetGeneration()
     {
         totalPlanets = Random.Range(3, 8);
+        chosenMissionPlanet = Random.Range(0, totalPlanets);
 
         Debug.Log("Number of Planets to Generate: " + totalPlanets);
 
@@ -53,6 +54,12 @@ public class SolarSytemManagement : MonoBehaviour
 
             // Adds the "DrawOrbit" script to the planet
             planet.AddComponent<DrawOrbit>();
+
+            // Adds the Anomaly Generation Script to the planet, if it is the chosen Mission planet
+            if (currentPlanet == chosenMissionPlanet)
+            {
+                planet.AddComponent<AnomalyGenerationScript>();
+            }
 
             // Regenerates the distance so that planets aren't generated too close to eachother
             randomDistance = Random.Range(30, 50);
@@ -69,7 +76,6 @@ public class SolarSytemManagement : MonoBehaviour
         // Adds all the created planets to an array, and selects one randomly to contain the mission objective.
         instantiatedPlanets = GameObject.FindGameObjectsWithTag("Planet");
         Debug.Log("instantiatedPlanets = " + instantiatedPlanets.Length);
-        int chosenMissionPlanet = Random.Range(0, totalPlanets);
         missionPlanet = instantiatedPlanets[chosenMissionPlanet].GetComponent<PlanetScript>();
         missionPlanet.isMissionPlanet = true;
     }

@@ -94,11 +94,6 @@ public class PlanetScript : MonoBehaviour
             planetCamera.enabled = false;
             systemSettings.surfacePlayer.SetActive(true);
             userInterface.SetUIMode(5);
-            if (isMissionPlanet)
-            {
-                this.gameObject.AddComponent<AnomalyGenerationScript>();
-            }
-
         }
 
         // Allows player to exit Planetary View, and return to the system map
@@ -120,6 +115,6 @@ public class PlanetScript : MonoBehaviour
         playerTransform.GetComponent<Rigidbody>().AddForce(gravityUp * gravity);
 
         Quaternion targetRotation = Quaternion.FromToRotation(localUp, gravityUp) * playerTransform.rotation;
-        playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, targetRotation, 50.0f);
+        playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, targetRotation, 50.0f * Time.deltaTime);
     }
 }

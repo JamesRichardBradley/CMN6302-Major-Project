@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovementScript : MonoBehaviour
 {
-    private float moveSpeed = 0.5f;
+    private float moveSpeed = 1f;
     private Vector3 moveDirection, rotateDirection;
     private Camera camera;
     public int score;

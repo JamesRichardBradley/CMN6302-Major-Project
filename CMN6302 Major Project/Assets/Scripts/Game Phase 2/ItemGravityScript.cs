@@ -13,9 +13,7 @@ public class ItemGravityScript : MonoBehaviour
     void Start()
     {
         systemSettings = GameObject.Find("SolarSystemManagement").GetComponent<SolarSytemManagement>();
-
         itemTransform = transform;
-
         gravityPlanet = systemSettings.missionPlanet;
     }
 
