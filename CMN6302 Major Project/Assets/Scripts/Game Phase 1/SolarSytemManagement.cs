@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class SolarSytemManagement : MonoBehaviour
 {
-    public Material[] skyboxMaterials, planetMaterials;
-    public GameObject[] systemCenterList, planetList, instantiatedPlanets;
-    private PlanetScript missionPlanet;
-    public GameObject systemCenter, planet;
-    private MeshRenderer[] planetMeshes;
-    private int centerSelection, totalPlanets, skyboxSelection, materialSelection;
+    public Material[] skyboxMaterials;
+    public GameObject[] systemCenterList, instantiatedPlanets;
+    public PlanetScript missionPlanet;
+    public GameObject systemCenter, planet, planetContainer, walkPlayer, surfacePlayer;
+    private int centerSelection, totalPlanets, skyboxSelection;
     public float distance = 50.0f, randomDistance;
 
     // Start is called before the first frame update
@@ -16,19 +15,21 @@ public class SolarSytemManagement : MonoBehaviour
         SkyboxSetup();
         SystemCenterSetup();
         PlanetGeneration();
+        MissionSetup();
+        SurfacePlayerSetup();
     }
 
-    // Selects which skybox will be used for this game
     void SkyboxSetup()
     {
+        // Selects which skybox will be used for this game
         skyboxSelection = Random.Range(0, skyboxMaterials.Length);
         RenderSettings.skybox = skyboxMaterials[skyboxSelection];
         Debug.Log("Skybox Selected: " + skyboxSelection);
     }
 
-    //Selects what will be generated for the gravitational point of the system (Star, Binary System, or Black Hole)
     void SystemCenterSetup()
     {
+        //Selects what will be generated for the gravitational point of the system (Star, Binary System, or Black Hole)
         centerSelection = Random.Range(0, systemCenterList.Length);
         Debug.Log("Gravitational Point Selected: " + centerSelection);
         systemCenter = systemCenterList[centerSelection];
@@ -45,19 +46,10 @@ public class SolarSytemManagement : MonoBehaviour
         // For Loop to iterate through the designated number of planets
         for (int currentPlanet = 0; currentPlanet <= totalPlanets; currentPlanet++)
         {
-            materialSelection = Random.Range(0, planetMaterials.Length);
-
-            // Creates a sphere (temporary), then sets its size, position (relative to the center and other generated planets), and its position in orbit around the center.
-            planet = Instantiate(planetList[Random.Range(0, planetList.Length)]);
+            // Instantiates the Planet Container Prefab, and sets it's position (relative to the center and other generated planets), and its position in orbit around the center.
+            planet = Instantiate(planetContainer);
             planet.transform.position = new Vector3(0,0,distance);
             planet.transform.RotateAround(systemCenter.transform.position, Vector3.up, Random.Range(0, 359));
-
-            // Finds all of the Mesh Renderers within the instantiated mesh, then applies a randomly chosen material to all meshes for this planet.
-            planetMeshes = planet.GetComponentsInChildren<MeshRenderer>();
-            foreach (MeshRenderer renderer in planetMeshes)
-            {
-                renderer.material = planetMaterials[materialSelection];
-            }
 
             // Adds the "DrawOrbit" script to the planet
             planet.AddComponent<DrawOrbit>();
@@ -70,11 +62,22 @@ public class SolarSytemManagement : MonoBehaviour
 
             Debug.Log("Planet " + (currentPlanet + 1) + " Generated");
         }
+    }
 
+    void MissionSetup()
+    {
         // Adds all the created planets to an array, and selects one randomly to contain the mission objective.
         instantiatedPlanets = GameObject.FindGameObjectsWithTag("Planet");
         Debug.Log("instantiatedPlanets = " + instantiatedPlanets.Length);
-        missionPlanet = instantiatedPlanets[Random.Range(0, totalPlanets)].GetComponent<PlanetScript>();
+        int chosenMissionPlanet = Random.Range(0, totalPlanets);
+        missionPlanet = instantiatedPlanets[chosenMissionPlanet].GetComponent<PlanetScript>();
         missionPlanet.isMissionPlanet = true;
+    }
+
+    void SurfacePlayerSetup()
+    {
+        // Gets the Surface Walking player in place over the mission planet, ready for planetside gameplay
+        surfacePlayer = Instantiate(walkPlayer, new Vector3(missionPlanet.transform.position.x, 1.2f, missionPlanet.transform.position.z), Quaternion.identity);
+        surfacePlayer.SetActive(false);
     }
 }

@@ -3,7 +3,13 @@ guid: ad415d51e5fb05a48836088bb85b7f1a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - scanCircle: {instanceID: 0}
+  - circleRenderer: {instanceID: 0}
+  - planetCamera: {instanceID: 0}
+  - player: {instanceID: 0}
+  - anomaly: {instanceID: 0}
+  - anomalyPrefab: {fileID: 625335076472681010, guid: 89245e35f10fad242b8ad1e35ddcf560, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -8,6 +8,8 @@ TagManager:
   - Gravitational Point
   - Planet Mesh
   - Planet Camera
+  - Anomaly
+  - WalkPlayer
   layers:
   - Default
   - TransparentFX

@@ -1,12 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UiManagment : MonoBehaviour
 {
-    private GameObject pauseUI, defaultUI, systemUI, planetUI, missionUI;
-    private int uiMode, previousUIMode;
+    private GameObject pauseUI, defaultUI, systemUI, planetUI, missionUI, planetsideUI;
+    public Text scoreText;
+    public int uiMode, previousUIMode, scoreValue;
     public Animator animator;
     public bool paused = false;
+
+    PlayerMovementScript player;
 
     // Start is called before the first frame update
     private void Start()
@@ -17,7 +21,7 @@ public class UiManagment : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetButtonDown("Pause"))
+        if (Input.GetButtonDown("Pause"))
         {
             if (uiMode != 4)
             {
@@ -34,12 +38,9 @@ public class UiManagment : MonoBehaviour
             }
         }
 
-        if (uiMode == 2)
+        if (uiMode == 5)
         {
-            if (Input.GetButtonDown("Submit"))
-            {
-                animator.SetTrigger("FadeOutTrigger");
-            }
+            scoreText.text = "Anomalies Collected: " + scoreValue.ToString() + " / 8";
         }
     }
 
@@ -50,57 +51,52 @@ public class UiManagment : MonoBehaviour
         systemUI = GameObject.Find("System View Buttons");
         planetUI = GameObject.Find("Planet View Buttons");
         missionUI = GameObject.Find("Mission Planet Buttons");
+        planetsideUI = GameObject.Find("Planet Surface");
+    }
+
+    void ZeroUI()
+    {
+        pauseUI.SetActive(false);
+        defaultUI.SetActive(false);
+        systemUI.SetActive(false);
+        planetUI.SetActive(false);
+        missionUI.SetActive(false);
+        planetsideUI.SetActive(false);
     }
 
     public void SetUIMode(int selection)
     {
         uiMode = selection;
+
+        Debug.Log("UI Mode: " + uiMode);
+
+        ZeroUI();
+
         switch (uiMode)
         {
             case 0:
-                pauseUI.SetActive(false);
                 defaultUI.SetActive(true);
-                systemUI.SetActive(false);
-                planetUI.SetActive(false);
-                missionUI.SetActive(false);
                 break;
 
             case 1:
-                pauseUI.SetActive(false);
-                defaultUI.SetActive(false);
                 systemUI.SetActive(true);
-                planetUI.SetActive(false);
-                missionUI.SetActive(false);
                 break;
 
             case 2:
-                pauseUI.SetActive(false);
-                defaultUI.SetActive(false);
-                systemUI.SetActive(false);
-                planetUI.SetActive(false);
                 missionUI.SetActive(true);
                 break;
 
             case 3:
-                pauseUI.SetActive(false);
-                defaultUI.SetActive(false);
-                systemUI.SetActive(false);
                 planetUI.SetActive(true);
-                missionUI.SetActive(false);
                 break;
 
             case 4:
                 pauseUI.SetActive(true);
-                defaultUI.SetActive(false);
-                systemUI.SetActive(false);
-                planetUI.SetActive(false);
-                missionUI.SetActive(false);
+                break;
+
+            case 5:
+                planetsideUI.SetActive(true);
                 break;
         }
-    }
-
-    public void ChangeScene()
-    {
-        SceneManager.LoadScene(3);
     }
 }

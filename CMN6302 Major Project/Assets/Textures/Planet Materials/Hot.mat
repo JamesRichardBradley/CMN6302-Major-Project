@@ -47,8 +47,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Displacement_Amplitude: 0.5
-    - _Planet_Mesh_Radius: 1.5
+    - _Displacement_Amplitude: 0.61
+    - _Planet_Mesh_Radius: 1.62
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors: []
