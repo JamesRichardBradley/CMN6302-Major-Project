@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
         FadeOutTo(2);
     }
 
+    //  Loads the Control Screen
     public void Controls()
     {
         SceneManager.LoadScene(4);

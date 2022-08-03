@@ -60,15 +60,16 @@ public class PlanetScript : MonoBehaviour
                         scanCircle.SetActive(false);
                         player.SetActive(false);
                         Debug.Log("Select Pressed");
-                        if (isMissionPlanet)
-                        {
-                            userInterface.SetUIMode(2);
-                            Debug.Log("Mission Planet");
-                        }
-                        else
+
+                        if (!isMissionPlanet)
                         {
                             userInterface.SetUIMode(3);
                             Debug.Log("Not Mission Planet");
+                        }
+                        else
+                        {
+                            userInterface.SetUIMode(2);
+                            Debug.Log("Mission Planet");
                         }
                         break;
 
@@ -81,6 +82,7 @@ public class PlanetScript : MonoBehaviour
 
                 cooldownTimer = 0;
             }
+
             if (Input.GetButton("Cancel") && cooldownTimer >= time)
             {
                 if (uiMode != 5)

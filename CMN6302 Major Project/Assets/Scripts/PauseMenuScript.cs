@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuScript : MonoBehaviour
 {
-
     public void Reload()
     {
         SceneManager.LoadScene(2);
@@ -18,5 +17,4 @@ public class PauseMenuScript : MonoBehaviour
     {
         Application.Quit();
     }
-
 }
