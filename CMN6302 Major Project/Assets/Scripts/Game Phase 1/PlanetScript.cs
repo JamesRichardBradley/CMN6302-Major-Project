@@ -11,7 +11,7 @@ public class PlanetScript : MonoBehaviour
     UiManagment userInterface;
     SolarSytemManagement systemSettings;
     public bool isMissionPlanet, paused;
-    public float gravity = -12;
+    public float gravity = -12, cooldownTimer, time = 0.5f;
     private int uiMode;
 
     private void Start()
@@ -49,7 +49,7 @@ public class PlanetScript : MonoBehaviour
     {
         if (!paused)
         {
-            if (Input.GetButton("Submit"))
+            if (Input.GetButton("Submit") && cooldownTimer >= time)
             {
                 switch (uiMode)
                 {
@@ -78,8 +78,10 @@ public class PlanetScript : MonoBehaviour
                         userInterface.SetUIMode(5);
                         break;
                 }
+
+                cooldownTimer = 0;
             }
-            if (Input.GetButton("Cancel"))
+            if (Input.GetButton("Cancel") && cooldownTimer >= time)
             {
                 if (uiMode != 5)
                 {
@@ -89,6 +91,8 @@ public class PlanetScript : MonoBehaviour
                     circleRenderer.enabled = true;
                     Debug.Log("Back Pressed");
                 }
+
+                cooldownTimer = 0;
             }
         }
     }
@@ -105,6 +109,7 @@ public class PlanetScript : MonoBehaviour
 
     private void Update()
     {
+        cooldownTimer += Time.deltaTime;
         paused = userInterface.paused;
         uiMode = userInterface.uiMode;
     }

@@ -83,7 +83,7 @@ public class SolarSytemManagement : MonoBehaviour
     void SurfacePlayerSetup()
     {
         // Gets the Surface Walking player in place over the mission planet, ready for planetside gameplay
-        surfacePlayer = Instantiate(walkPlayer, new Vector3(missionPlanet.transform.position.x, 1.2f, missionPlanet.transform.position.z), Quaternion.identity);
+        surfacePlayer = Instantiate(walkPlayer, new Vector3(missionPlanet.transform.position.x, 1.5f, missionPlanet.transform.position.z), Quaternion.identity);
         surfacePlayer.SetActive(false);
     }
 }
