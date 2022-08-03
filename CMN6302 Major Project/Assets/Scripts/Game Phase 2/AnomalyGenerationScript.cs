@@ -19,7 +19,7 @@ public class AnomalyGenerationScript : MonoBehaviour
 
         for (int currentAnomaly = 0; currentAnomaly <= anomaliesToGenerate; currentAnomaly++)
         {
-            Vector3 spawnPosition = Random.onUnitSphere * 1.025f + this.gameObject.transform.position;
+            Vector3 spawnPosition = Random.onUnitSphere * 1.5f + gameObject.transform.position;
             anomaly = Instantiate(anomalyPrefab, spawnPosition, Quaternion.identity);
             Debug.Log("Anomaly " + (currentAnomaly + 1) + " Spawned");
         }

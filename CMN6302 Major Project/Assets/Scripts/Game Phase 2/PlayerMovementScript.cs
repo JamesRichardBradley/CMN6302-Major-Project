@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovementScript : MonoBehaviour
 {
-    private float moveSpeed = 1f;
+    private float moveSpeed = 0.3f;
     private Vector3 moveDirection, rotateDirection;
-    private Camera camera;
+    private new Camera camera;
     public int score;
 
     UiManagment userInterface;
